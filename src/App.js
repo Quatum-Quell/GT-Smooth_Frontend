@@ -1,7 +1,16 @@
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import SplashPage from './component/SplashPage';
+import Login from './component/Login';
+import Dashboard from './component/Dashboard';
 
 function App() {
   return (
-    <div className="bg-red-900 text-white text-5xl font-bold flex justify-center">Hello World</div>
+    <Routes>
+      <Route exact path="/" element={<SplashPage />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/dashboard" element={<Dashboard />} />
+    </Routes>
   );
 }
 
