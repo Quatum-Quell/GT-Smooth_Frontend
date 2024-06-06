@@ -25,9 +25,13 @@ const Search = () => {
     navigate(-1);
   };
 
-  console.log(setSearchedData(true))
+  const searchFunc = () => {
+    setSearchedData(!searchedData)
+  }
+
+  console.log(searchFunc)
   return (
-    <div className="">
+    <div className="sm:w-[375px]">
       <div className="bg-[#1F2229] px-4 py-[51px] flex items-center gap-[98.5px] w-full pb-[16.48px]">
         <button
           onClick={goBack}
@@ -35,12 +39,10 @@ const Search = () => {
         >
           <BackIcon />
         </button>
-        <h2 className="font-semibold text-[20px] text-white w-full">
-          Search
-        </h2>
+        <h2 className="font-semibold text-[20px] text-white w-full">Search</h2>
       </div>
 
-      <div className="bg-[#181820] sm:w-[375px] pt-[26px] pb-[116px] min-h-screen">
+      <div className="bg-[#181820] pt-[26px] pb-[116px] min-h-screen">
         <div className="flex items-center mr-[23px] ml-5 bg-[#3A2220] py-2 px-[18px] border border-[#713C34] text-white gap-[23px]">
           <SearchIcon />
           <input
