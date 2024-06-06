@@ -24,6 +24,8 @@ const Search = () => {
   const goBack = () => {
     navigate(-1);
   };
+
+  console.log(setSearchedData(true))
   return (
     <div className="">
       <div className="bg-[#1F2229] px-4 py-[51px] flex items-center gap-[98.5px] w-full pb-[16.48px]">
