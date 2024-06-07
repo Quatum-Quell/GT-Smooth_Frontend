@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 const BottomNav = () => {
   return (
-    <ul class="sticky w-full bottom-0 left-0 nav bg-[#1F2229] text-[#9B9BA7] text-[9.62px] flex flex-row items-center gap-[25px] pt-[19px] pb-[14.72px] px-[31px]">
+    <ul class="sticky w-full bottom-0 left-0 nav bg-[#1F2229] text-[#9B9BA7] text-[9.62px] flex items-center justify-between pt-[19px] pb-[14.72px] px-[31px]">
       <li className="flex flex-col gap-1 items-center">
         <img src={HomeIcon} alt="home_icon" />
         <Link class="active text-[#F95525] font-bold">Home</Link>

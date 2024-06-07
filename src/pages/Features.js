@@ -7,92 +7,111 @@ import { ReactComponent as EventIcon } from '../assets/eventIcon.svg';
 import { ReactComponent as TransportIcon } from '../assets/transportIcon.svg';
 import { ReactComponent as InsuranceIcon } from '../assets/insuranceIcon.svg';
 import { ReactComponent as TickIcon } from '../assets/tickIcon.svg';
+import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
+import { useNavigate } from 'react-router-dom';
+import BottomNav from '../component/BottomNav';
 
 const Features = () => {
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <div className="sm:w-[375px] bg-[#181820] h-screen">
-      <div className="bg-[#1F2229] pt-[54px] text-white text-center w-full pb-4">
-        <h2 className="font-semibold text-[20px] leading-none">
-          Edit Shortcuts
-        </h2>
-        <p className="text-xs">
-          You can add only four options to your shortcuts.
-        </p>
-      </div>
-
-      <div className="pt-[56px] pb-[66px] w-[344.47px] mx-auto">
-        <div className="grid grid-cols-4 grid-rows-3 gap-x-10 gap-y-[30px]">
-          <div className="flex flex-col items-center justify-center gap-1 relative">
-            <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            <TickIcon className="absolute top-[1px] right-1" />
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1 relative">
-            <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            <TickIcon className="absolute top-[1px] right-1" />
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1 relative">
-            <TransferIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            <TickIcon className="absolute top-[1px] right-1" />
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <InsuranceIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <EventIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <TransportIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1 relative">
-            <NearMeIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            <TickIcon className="absolute top-[1px] right-1" />
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-          </div>
-
-          <div className="flex flex-col items-center justify-center gap-1">
-            <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-            <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+    <div className="min-h-screen">
+      <div className="sm:w-[375px] bg-[#181820] min-h-screen">
+        <div className="bg-[#1F2229] px-4 py-[51px] flex w-full pb-[16.48px]">
+          <button
+            onClick={goBack}
+            className="w-[39.5px] h-[35.52px] flex items-center justify-center"
+          >
+            <BackIcon />
+          </button>
+          <div className="flex flex-col w-full text-white text-center">
+            <h2 className="font-semibold text-[20px] leading-none">
+              Edit Shortcuts
+            </h2>
+            <p className="text-xs">
+              You can add only four options to your shortcuts.
+            </p>
           </div>
         </div>
-      </div>
 
-      <div className="w-full px-4">
-        <button className="bg-[#E04403] text-white font-bold w-full flex items-center justify-center h-[47px] rounded-[5px] border border-[#713C34]">
-          Save
-        </button>
+        <div className="pt-[56px] pb-[66px] w-[344.47px] mx-auto">
+          <div className="grid grid-cols-4 grid-rows-3 gap-x-10 gap-y-[30px]">
+            <div className="flex flex-col items-center justify-center gap-1 relative">
+              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+              <TickIcon className="absolute top-[1px] right-1" />
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1 relative">
+              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+              <TickIcon className="absolute top-[1px] right-1" />
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1 relative">
+              <TransferIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+              <TickIcon className="absolute top-[1px] right-1" />
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <InsuranceIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <EventIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <TransportIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1 relative">
+              <NearMeIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+              <TickIcon className="absolute top-[1px] right-1" />
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
+            </div>
+
+            <div className="flex flex-col items-center justify-center gap-1">
+              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
+              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full px-4">
+          <button className="bg-[#E04403] text-white font-bold w-full flex items-center justify-center h-[47px] rounded-[5px] border border-[#713C34]">
+            Save
+          </button>
+        </div>
       </div>
+      <BottomNav />
     </div>
   );
 };

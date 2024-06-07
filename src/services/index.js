@@ -15,3 +15,12 @@ export const getFeatures = async () => {
     throw error;
   }
 };
+export const getUser = async (id) => {
+  try {
+    const response = await apiService.get(`/user/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
