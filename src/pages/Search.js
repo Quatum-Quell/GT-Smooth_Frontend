@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as CancelIcon } from '../assets/cancelIcon.svg';
 import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
 import { ReactComponent as BuyAirtimeIcon } from '../assets/buyAirtimeIcon.svg';
@@ -16,20 +16,52 @@ import { ReactComponent as TransportIcon } from '../assets/transportIcon.svg';
 import { ReactComponent as InsuranceIcon } from '../assets/insuranceIcon.svg';
 import { ReactComponent as ArrowIcon } from '../assets/white-chevron-right.svg';
 import { Link, useNavigate } from 'react-router-dom';
+import { getFeatures } from '../services';
 
 const Search = () => {
   const [searchedData, setSearchedData] = useState(false);
+  const [allFeatures, setAllFeatures] = useState([]);
+  const [filteredFeatures, setFilteredFeatures] = useState([]);
+  const [searchParam, setSearchParam] = useState('');
   const navigate = useNavigate();
 
   const goBack = () => {
     navigate(-1);
   };
 
-  const searchFunc = () => {
-    setSearchedData(!searchedData)
-  }
+  useEffect(() => {
+    const fetchFeatures = async () => {
+      try {
+        const data = await getFeatures();
+        setAllFeatures(data);
+        console.log(allFeatures);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
 
-  console.log(searchFunc)
+    fetchFeatures();
+  }, [allFeatures]);
+
+
+  useEffect(() => {
+    if (searchParam) {
+      const filtered = allFeatures.filter((feature) =>
+        feature.featureName.toLowerCase().includes(searchParam.toLowerCase())
+      );
+      setFilteredFeatures(filtered);
+      setSearchedData(true);
+    } else {
+      setSearchedData(false);
+      setFilteredFeatures([]);
+    }
+  }, [searchParam, allFeatures]);
+  
+
+  const handleChange = (e) => {
+    setSearchParam(e.target.value);
+  };
+
   return (
     <div className="sm:w-[375px]">
       <div className="bg-[#1F2229] px-4 py-[51px] flex items-center gap-[98.5px] w-full pb-[16.48px]">
@@ -48,29 +80,31 @@ const Search = () => {
           <input
             type="text"
             placeholder="Search for anything"
+            onChange={handleChange}
+            value={searchParam}
             className="w-full bg-transparent text-xs text-white placeholder:text-white outline-none"
           />
-          <CancelIcon />
+          <CancelIcon onClick={() => setSearchParam('')} />
         </div>
 
         {searchedData ? (
-          <div className="pt-[27px] flex flex-col gap-[18.53px] h-full px-5">
-            <div className="flex items-center justify-between">
-              <div className="flex gap-[13px] items-center">
-                <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-                <p className="text-white text-xs">Buy airtime</p>
-              </div>
-              <ArrowIcon />
+          filteredFeatures.length > 0 ? (
+            <div className="pt-[27px] flex flex-col gap-[18.53px] h-full px-5">
+              {filteredFeatures.map((item, index) => (
+                <div className="flex items-center justify-between" key={index}>
+                  <div className="flex gap-[13px] items-center">
+                    <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
+                    <p className="text-white text-xs">{item.featureName}</p>
+                  </div>
+                  <ArrowIcon />
+                </div>
+              ))}
             </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex gap-[13px] items-center">
-                <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-                <p className="text-white text-xs">Buy Data</p>
-              </div>
-              <ArrowIcon />
-            </div>
-          </div>
+          ) : (
+            <p className="text-white text-xs pt-[27px] text-center px-5">
+              No results found
+            </p>
+          )
         ) : (
           <div className="pt-[22px] h-full">
             <div className="flex flex-col gap-[17px] pr-[23px] pl-5 mb-[22px]">
