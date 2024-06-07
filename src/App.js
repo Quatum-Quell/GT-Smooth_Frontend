@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import SplashPage from './component/SplashPage';
-import Login from './component/Login';
-import Dashboard from './component/Dashboard';
-import Search from './component/Search';
-import Features from './component/Features';
+import SplashPage from './pages/SplashPage';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Search from './pages/Search';
+import Features from './pages/Features';
 
 function App() {
   return (
