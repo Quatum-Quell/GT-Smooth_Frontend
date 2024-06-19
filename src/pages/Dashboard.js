@@ -19,7 +19,7 @@ const Dashboard = () => {
         <div className="flex items-center justify-between pr-5">
           <div className="profile flex gap-2 items-center">
             <ProfileIcon />
-            <h2 className="font-bold text-[20px]">Hello, Ikechukwu!</h2>
+            <h2 className="font-bold text-[20px]">Hello, Oluwanimofe!</h2>
           </div>
 
           <Link to="/search">
