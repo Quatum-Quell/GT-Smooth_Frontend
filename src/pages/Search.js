@@ -235,7 +235,7 @@ const Search = () => {
                               <div className="h-[48.47px] w-[48.47px]">
                                 <BuyAirtimeIcon className="h-full w-full object-cover" />
                               </div>
-                              <p className="text-[#8F8F99] text-[10.54px] text-wrap w-[85px] text-center">
+                              <p className="text-[#8F8F99] text-[10.54px] text-wrap w-[87px] text-center">
                                 {item.featureName}
                               </p>
                             </div>
