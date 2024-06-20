@@ -15,12 +15,50 @@ export const getFeatures = async () => {
     throw error;
   }
 };
-export const getUser = async (id) => {
+
+export const loginUser = async (payload) => {
   try {
-    const response = await apiService.get(`/user/${id}`);
+    const response = await apiService.post(
+      `/User/Login?password=${payload}`,
+      payload
+    );
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
+export const getUser = async (id) => {
+  try {
+    const response = await apiService.get(`/Account?userId=${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserFeature = async (id) => {
+  try {
+    const response = await apiService.get(`/Feature/userfeature/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getFeatureCategories = async () => {
+  try {
+    const response = await apiService.get('/FeatureCategory');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getFeatureByCategories = async (id) => {
+  try {
+    const response = await apiService.get(`/Feature/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
