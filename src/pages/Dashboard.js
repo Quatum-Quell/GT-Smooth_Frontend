@@ -4,7 +4,6 @@ import AccountIcon from '../assets/accountIcon.svg';
 import EyeIcon from '../assets/eyeIcon.svg';
 import FundIcon from '../assets/fundIcon.svg';
 import TransferIcon from '../assets/transferIcon.svg';
-import NearMeIcon from '../assets/nearMeIcon.svg';
 import BuyAirtimeIcon from '../assets/buyAirtimeIcon.svg';
 import BuyDataIcon from '../assets/buyDataIcon.svg';
 import ProceedIcon from '../assets/proceedIcon.svg';
