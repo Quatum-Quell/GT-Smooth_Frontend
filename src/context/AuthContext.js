@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 export const AuthContext = React.createContext({
   id: '',
@@ -8,13 +8,20 @@ export const AuthContext = React.createContext({
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [id, setId] = useState();
-  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      setId(parsedUser.userId);
+    }
+  }, []);
 
   function storeAuthCookie(data) {
-    localStorage.setItem('user', JSON.stringify(data.user));
-    setUser(data.user);
-    setId(data.id);
-    setData(data);
+    localStorage.setItem('user', JSON.stringify(data));
+    setUser(data);
+    setId(data.userId);
   }
 
   return (
@@ -23,8 +30,6 @@ export const AuthContextProvider = ({ children }) => {
         user,
         id,
         storeAuthCookie,
-        data,
-        setData,
       }}
     >
       {children}
