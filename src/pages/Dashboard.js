@@ -55,7 +55,6 @@ const Dashboard = () => {
   }, [id]);
 
   return (
-<<<<<<< HEAD
     <div className="bg-[#181820] sm:w-[375px] min-h-screen">
       {loading ? (
         <Loader />
@@ -69,15 +68,6 @@ const Dashboard = () => {
                   Hello, {user?.accountName}!
                 </h2>
               </div>
-=======
-    <div className="relative bg-[#181820] sm:w-[375px] min-h-screen">
-      <div className=" pb-8 flex flex-col gap-[37px] h-full text-white pl-4 pt-[54px]">
-        <div className="flex items-center justify-between pr-5">
-          <div className="profile flex gap-2 items-center">
-            <ProfileIcon />
-            <h2 className="font-bold text-[20px]">Hello, Oluwanimofe!</h2>
-          </div>
->>>>>>> c1918cc32d75e72361b77ec89903a56e1838153d
 
               <Link to="/search">
                 <SearchIcon />
