@@ -224,8 +224,8 @@ const Search = () => {
                     </p>
                     <div className="pl-[18px] w-full">
                       <Swiper
-                        spaceBetween={10}
-                        slidesPerView={4.5}
+                        spaceBetween={13}
+                        slidesPerView={3.5}
                         onSlideChange={() => console.log('slide change')}
                         onSwiper={(swiper) => console.log(swiper)}
                       >
