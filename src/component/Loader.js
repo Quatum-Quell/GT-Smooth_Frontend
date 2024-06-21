@@ -4,7 +4,7 @@ import { ColorRing } from 'react-loader-spinner';
 const Loader = () => {
   return (
     <div className="flex h-screen items-center justify-center w-full">
-      <div className='bg-white h-auto w-4/5 mx-auto py-10 rounded-lg flex items-center justify-center'>
+      <div className=" h-auto w-4/5 mx-auto py-10 rounded-lg flex items-center justify-center">
         <ColorRing
           visible={true}
           height="40"

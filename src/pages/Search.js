@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as CancelIcon } from '../assets/cancelIcon.svg';
 import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
-import { ReactComponent as BuyAirtimeIcon } from '../assets/buyAirtimeIcon.svg';
 import { ReactComponent as SearchIcon } from '../assets/searchIcon.svg';
 import { ReactComponent as Kuda } from '../assets/kuda-beneficiaries.svg';
 import { ReactComponent as UBA } from '../assets/uba-beneficiaries.svg';

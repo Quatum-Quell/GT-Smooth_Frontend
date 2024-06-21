@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as BuyAirtimeIcon } from '../assets/buyAirtimeIcon.svg';
 import { ReactComponent as TickIcon } from '../assets/tickIcon.svg';
 import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
 import { useNavigate } from 'react-router-dom';
