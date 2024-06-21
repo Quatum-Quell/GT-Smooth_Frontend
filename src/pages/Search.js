@@ -41,6 +41,7 @@ const Search = () => {
       try {
         const data = await getFeatures();
         setAllFeatures(data);
+        console.log(allFeatures)
       } catch (error) {
         console.log(error.response.data.message);
       }
@@ -140,7 +141,7 @@ const Search = () => {
                       key={index}
                     >
                       <div className="flex gap-[13px] items-center">
-                        <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
+                        <img src={item.icon} alt='icon' className="h-[48.47px] w-[48.47px]" />
                         <p className="text-white text-xs">{item.featureName}</p>
                       </div>
                       <ArrowIcon />
