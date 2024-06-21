@@ -1,25 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as BuyAirtimeIcon } from '../assets/buyAirtimeIcon.svg';
-import { ReactComponent as BuyDataIcon } from '../assets/buyDataIcon.svg';
-import { ReactComponent as NearMeIcon } from '../assets/nearMeIcon.svg';
-import { ReactComponent as TransferIcon } from '../assets/transfer-circle.svg';
-import { ReactComponent as EventIcon } from '../assets/eventIcon.svg';
-import { ReactComponent as TransportIcon } from '../assets/transportIcon.svg';
-import { ReactComponent as InsuranceIcon } from '../assets/insuranceIcon.svg';
 import { ReactComponent as TickIcon } from '../assets/tickIcon.svg';
 import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
 import { useNavigate } from 'react-router-dom';
 import BottomNav from '../component/BottomNav';
+import { useAuthContext } from '../context/AuthContext';
+import { getFeaturesByUser } from '../services';
 
 const Features = () => {
+  const [features, setFeatures] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { id } = useAuthContext();
   const goBack = () => {
     navigate(-1);
   };
 
+    useEffect(() => {
+      const getUserDetails = async () => {
+        setLoading(true);
+        try {
+          const res = await getFeaturesByUser(id);
+          setFeatures(res);
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      getUserDetails();
+    }, [id]);
+  
   return (
     <div className="min-h-screen">
-      <div className="sm:w-[375px] bg-[#181820] min-h-screen">
+      <div className="sm:w-[375px] bg-[#181820] min-h-screen pb-8">
         <div className="bg-[#1F2229] px-4 py-[51px] flex w-full pb-[16.48px]">
           <button
             onClick={goBack}
@@ -38,70 +53,25 @@ const Features = () => {
         </div>
 
         <div className="pt-[56px] pb-[66px] w-[344.47px] mx-auto">
-          <div className="grid grid-cols-4 grid-rows-3 gap-x-10 gap-y-[30px]">
-            <div className="flex flex-col items-center justify-center gap-1 relative">
-              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-              <TickIcon className="absolute top-[1px] right-1" />
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1 relative">
-              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-              <TickIcon className="absolute top-[1px] right-1" />
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1 relative">
-              <TransferIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-              <TickIcon className="absolute top-[1px] right-1" />
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <InsuranceIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <EventIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <TransportIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1 relative">
-              <NearMeIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-              <TickIcon className="absolute top-[1px] right-1" />
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <BuyAirtimeIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy airt...</p>
-            </div>
-
-            <div className="flex flex-col items-center justify-center gap-1">
-              <BuyDataIcon className="h-[48.47px] w-[48.47px]" />
-              <p className="text-[#8F8F99] text-[10.54px]">Buy Data</p>
-            </div>
+          <div className="grid grid-cols-4 gap-x-10 gap-y-[30px] h-auto">
+            {features.map((item) => (
+              <div
+                className="flex flex-col items-center gap-1 relative"
+                key={item.id}
+              >
+                <img
+                  src={item.icon}
+                  alt='icon'
+                  className="h-[48.47px] w-[48.47px]"
+                />
+                <p className="text-[#8F8F99] text-[10.54px] text-wrap w-[87px] text-center">
+                  {item.featureName}
+                </p>
+                {item.isSelected && (
+                  <TickIcon className="absolute top-[1px] right-1" />
+                )}
+              </div>
+            ))}
           </div>
         </div>
 

@@ -43,7 +43,6 @@ const Dashboard = () => {
       try {
         const result = await getUserFeature(id);
         setFeatures(result);
-        console.log(result);
       } catch (error) {
         console.log(error);
       } finally {
@@ -139,9 +138,9 @@ const Dashboard = () => {
                       className="flex flex-col items-center justify-center mx-auto w-auto"
                     >
                       <img
-                        src={BuyAirtimeIcon}
+                        src={item.feature.icon}
                         alt=""
-                        className="w-auto h-auto"
+                        className="w-[69px] h-[69px]"
                       />
                       <p className="text-[#8F8F99] text-[15px] whitespace-nowrap overflow-hidden text-ellipsis text-center w-[75px]">
                         {item.feature.featureName}

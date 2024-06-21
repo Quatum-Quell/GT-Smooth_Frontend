@@ -62,3 +62,12 @@ export const getFeatureByCategories = async (id) => {
     throw error;
   }
 };
+
+export const getFeaturesByUser = async (id) => {
+  try {
+    const response = await apiService.get(`/Feature/AllUserFeatures/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
