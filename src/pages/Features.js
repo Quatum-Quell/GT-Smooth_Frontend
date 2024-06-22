@@ -4,33 +4,84 @@ import { ReactComponent as BackIcon } from '../assets/backArrow.svg';
 import { useNavigate } from 'react-router-dom';
 import BottomNav from '../component/BottomNav';
 import { useAuthContext } from '../context/AuthContext';
-import { getFeaturesByUser } from '../services';
+import { addfeature, getFeaturesByUser } from '../services';
 import Loader from '../component/Loader';
 
 const Features = () => {
   const [features, setFeatures] = useState([]);
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useAuthContext();
+
+  useEffect(() => {
+    const getUserDetails = async () => {
+      setLoading(true);
+      try {
+        const res = await getFeaturesByUser(id);
+        setFeatures(res);
+        setSelectedFeatures(res.filter((feature) => feature.isSelected));
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getUserDetails();
+  }, [id]);
+
   const goBack = () => {
     navigate(-1);
   };
 
-    useEffect(() => {
-      const getUserDetails = async () => {
-        setLoading(true);
-        try {
-          const res = await getFeaturesByUser(id);
-          setFeatures(res);
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      getUserDetails();
-    }, [id]);
-  
+  const handleSelect = (item) => {
+    const currentlySelectedCount = selectedFeatures.filter(
+      (feature) => feature.isSelected
+    ).length;
+
+    if (currentlySelectedCount >= 5 && !item.isSelected) {
+      alert(
+        'You can only select up to 5 items. Please unpick one before adding another.'
+      );
+      return;
+    }
+
+    setFeatures((prevFeatures) =>
+      prevFeatures.map((feature) =>
+        feature.featureId === item.featureId
+          ? { ...feature, isSelected: !feature.isSelected }
+          : feature
+      )
+    );
+
+    setSelectedFeatures((prevSelected) => {
+      const existingFeatureIndex = prevSelected.findIndex(
+        (feature) => feature.featureId === item.featureId
+      );
+
+      if (existingFeatureIndex !== -1) {
+        const updatedFeatures = [...prevSelected];
+        updatedFeatures[existingFeatureIndex].isSelected = !item.isSelected;
+        return updatedFeatures;
+      } else {
+        return [...prevSelected, { ...item, isSelected: true }];
+      }
+    });
+  };
+
+  const addUserFeatures = async () => {
+    setLoading(true);
+    try {
+      const res = await addfeature(selectedFeatures);
+      navigate('/dashboard');
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="sm:w-[375px] bg-[#181820] min-h-screen">
       {loading ? (
@@ -59,8 +110,9 @@ const Features = () => {
               <div className="grid grid-cols-4 gap-x-10 gap-y-[30px] h-auto">
                 {features.map((item) => (
                   <div
-                    className="flex flex-col items-center gap-1 relative"
-                    key={item.id}
+                    className="flex flex-col items-center gap-1 relative cursor-pointer"
+                    key={item.featureId}
+                    onClick={() => handleSelect(item)}
                   >
                     <img
                       src={item.icon}
@@ -79,7 +131,10 @@ const Features = () => {
             </div>
 
             <div className="w-full px-4">
-              <button className="bg-[#E04403] text-white font-bold w-full flex items-center justify-center h-[47px] rounded-[5px] border border-[#713C34]">
+              <button
+                className="bg-[#E04403] text-white font-bold w-full flex items-center justify-center h-[47px] rounded-[5px] border border-[#713C34]"
+                onClick={addUserFeatures}
+              >
                 Save
               </button>
             </div>

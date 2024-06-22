@@ -72,3 +72,12 @@ export const getFeaturesByUser = async (id) => {
     throw error;
   }
 };
+
+export const addfeature = async (payload) => {
+  try {
+    const response = await apiService.post('/Feature/addFeature', payload);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
