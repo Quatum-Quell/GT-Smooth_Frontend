@@ -65,7 +65,7 @@ const Login = () => {
   });
 
   return (
-    <div className="bg-[#181820] sm:w-[375px] h-screen">
+    <div className="bg-[#181820] sm:w-[375px] min-h-screen">
       {loading ? (
         <Loader />
       ) : (

@@ -101,7 +101,7 @@ const Features = () => {
                   Edit Shortcuts
                 </h2>
                 <p className="text-xs">
-                  You can add only four options to your shortcuts.
+                  You can add only five options to your shortcuts.
                 </p>
               </div>
             </div>
